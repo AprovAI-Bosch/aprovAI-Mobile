@@ -92,7 +92,7 @@ Retorne APENAS um JSON válido:
 IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser marcadas como corretas, mesmo que simples.
 `
     // Call to OpenAI API
-    const response = await client.chat.completion.create({
+    const response = await client.chat.completions.create({
       model: 'gpt-4o-mini', // choose the model you want
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.3, // low = more deterministic answers
@@ -108,7 +108,6 @@ IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser
     } catch (e) {
       result = { raw: content, error: 'Output was not valid JSON' }
     }
-
     return res.json(result)
   } catch (error) {
     console.error('Error processing test data:', error)
