@@ -16,7 +16,7 @@ const client = new OpenAI({
 // Route to receive test data
 app.post('/upload', async (req, res) => {
   try {
-    const prova = req.body.test // The student's test text
+    const prova = req.body // The student's test text
 
     if (!prova) {
       return res.status(400).json({ error: 'No test data provided' })

@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from 'react-native'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
-import ml from '@react-native-firebase/ml-vision'
+import MLKitOCR from 'react-native-mlkit-ocr'
 import axios from 'axios'
 
 export default function Main() {
@@ -40,29 +40,38 @@ export default function Main() {
     return true
   }
 
-  // Processa múltiplas imagens de uma vez
+  // Processa múltiplas imagens
   const processImages = async (uris) => {
     const results = []
-    for (const uri of uris) {
+
+    for (let uri of uris) {
       try {
-        const mlResult = await ml().textRecognizerProcessImage(uri)
-        const text = mlResult.text || 'Nenhum texto encontrado'
+        // Usa a nova lib
+        const visionResp = await MLKitOCR.detectFromFile(uri)
+
+        // Concatena todo texto encontrado
+        const text =
+          visionResp.length > 0
+            ? visionResp.map((b) => b.text).join(' ')
+            : 'Nenhum texto encontrado'
+
         results.push({ uri, text })
       } catch (err) {
+        console.log('Erro OCR:', err)
         results.push({ uri, text: 'Erro ao processar imagem' })
-        console.log('Erro ML Kit:', err)
       }
     }
+    console.log(allTexts);
 
-    // Atualiza o array de imagens
+    // Atualiza estado
     setImages((prev) => [...prev, ...results])
 
-    // Envia todos os textos para o servidor em uma única requisição
+    // Extrai todos os textos e envia pro servidor
     const allTexts = results.map((r) => r.text)
     sendAllToServer(allTexts)
   }
 
-  // Envia todos os textos para o servidor
+  // Envia para servidor
   const sendAllToServer = async (texts) => {
     if (texts.length === 0) return
     try {
@@ -77,7 +86,7 @@ export default function Main() {
     }
   }
 
-  // Abrir câmera (uma foto de cada vez, mas depois podemos agrupar)
+  // Abrir câmera
   const openCamera = async () => {
     const hasPermission = await requestCameraPermission()
     if (!hasPermission) {
@@ -89,8 +98,8 @@ export default function Main() {
       { mediaType: 'photo', saveToPhotos: true },
       async (response) => {
         if (!response.didCancel && !response.errorCode) {
-          const uri = response.assets.map((a) => a.uri) // array de URIs
-          await processImages(uri)
+          const uris = response.assets.map((a) => a.uri)
+          await processImages(uris)
         }
       }
     )
@@ -102,7 +111,7 @@ export default function Main() {
       { mediaType: 'photo', selectionLimit: 0 },
       async (response) => {
         if (!response.didCancel && !response.errorCode) {
-          const uris = response.assets.map((a) => a.uri) // array de URIs
+          const uris = response.assets.map((a) => a.uri)
           await processImages(uris)
         }
       }
@@ -148,5 +157,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     textAlign: 'center',
-  },
+  },
 })
