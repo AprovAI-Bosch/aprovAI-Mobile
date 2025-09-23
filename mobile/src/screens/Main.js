@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+  import { useEffect, useState, useRef } from "react";
 import { View, TouchableOpacity, Text, StyleSheet, Alert } from "react-native";
 import { Camera, useCameraDevices } from "react-native-vision-camera";
 import ml from '@react-native-firebase/ml-vision';
@@ -6,15 +6,11 @@ import axios from "axios";
 
 export default function Main() {
   const devices = useCameraDevices();
+  const device = devices?.back; // <- MOVIDO PARA CIMA
   const camera = useRef(null);
   const [text, setText] = useState('');
   const [photoPath, setPhotoPath] = useState('');
   const [hasPermission, setHasPermission] = useState(false);
-
-  console.log('--- Diagnóstico ---');
-  console.log('Permissão concedida?', hasPermission);
-  console.log('Dispositivo de câmera disponível?', device != null);
-  console.log('-------------------');
 
   useEffect(() => {
     async function getPermission() {
@@ -27,13 +23,16 @@ export default function Main() {
     getPermission();
   }, []);
 
-  const device = devices?.back;
+  // Agora os logs estão após a definição do `device`
+  console.log('--- Diagnóstico ---');
+  console.log('Permissão concedida?', hasPermission);
+  console.log('Dispositivo de câmera disponível?', device != null);
+  console.log('-------------------');
 
   const send = async (dados) => {
-    if(dados) {
+    if (dados) {
       try {
-        // Substitua 'SEU_IPV4' pelo IP do seu servidor
-        const response = await axios.post('http://192.168.15.46:3000/upload', { text: dados });
+        const response = await axios.post('http:SEU_IPV_4:3000/upload', { text: dados });
         console.log("Resposta do servidor:", response.data);
         Alert.alert('Sucesso!', JSON.stringify(response.data));
       } catch (error) {
@@ -45,15 +44,15 @@ export default function Main() {
 
   const TextRecognition = async () => {
     if (!camera.current) {
-        Alert.alert('Erro', 'Câmera não está pronta.');
-        return;
+      Alert.alert('Erro', 'Câmera não está pronta.');
+      return;
     }
 
     try {
       const photo = await camera.current.takePhoto();
-      setPhotoPath(photo.path); 
+      setPhotoPath(photo.path);
       const result = await ml().textRecognizerProcessImage(photo.path);
-      
+
       if (result.text) {
         setText(result.text);
         send(result.text);
@@ -67,8 +66,12 @@ export default function Main() {
     }
   };
 
-  if ( hasPermission === false || device == null) {
-    return <View style={styles.container}><Text>Aguardando permissão da câmera ou carregando...</Text></View>;
+  if (hasPermission === false || device == null) {
+    return (
+      <View style={styles.container}>
+        <Text>Aguardando permissão da câmera ou carregando...</Text>
+      </View>
+    );
   }
 
   return (
@@ -123,6 +126,6 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 5,
     textAlign: 'center',
-    fontSize: 12,
-  },
+    fontSize: 12,
+  },
 });
