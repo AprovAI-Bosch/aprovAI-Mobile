@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^8.4.7",
+    "@react-native-firebase/ml-vision": "^7.4.13",
     "axios": "^1.12.2",
     "expo": "~54.0.9",
     "expo-dev-client": "~6.0.12",
