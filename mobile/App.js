@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
-import SendPhoto from './components/ButtonSendPhoto/ButtonSendPhoto'
 import styles from './AppStyle';
 
 export default function App() {
