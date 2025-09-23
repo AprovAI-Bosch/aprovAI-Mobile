@@ -108,7 +108,6 @@ IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser
     } catch (e) {
       result = { raw: content, error: 'Output was not valid JSON' }
     }
-
     return res.json(result)
   } catch (error) {
     console.error('Error processing test data:', error)
