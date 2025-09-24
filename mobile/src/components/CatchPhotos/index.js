@@ -12,6 +12,7 @@ import styles from './indexStyles';
 
 export default function ImagePickerModal({ requestCameraPermission, processImages }) {
     const [modalVisible, setModalVisible] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(null)
 
     const handleOpenCamera = async () => {
         setModalVisible(false)
@@ -26,6 +27,7 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
             async (response) => {
                 if (!response.didCancel && !response.errorCode) {
                     const uris = response.assets.map((a) => a.uri)
+                    setSelectedImage(uris[0])
                     await processImages(uris)
                 }
             }
@@ -39,6 +41,7 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
             async (response) => {
                 if (!response.didCancel && !response.errorCode) {
                     const uris = response.assets.map((a) => a.uri)
+                    setSelectedImage(uris[0])
                     await processImages(uris)
                 }
             }
@@ -92,6 +95,12 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
                     </View>
                 </View>
             </Modal>
+              {selectedImage && (
+                <Image
+                    source={{ uri: selectedImage }}
+                    style={{ width: 200, height: 200, marginTop: 20 }}
+                />
+  )}
         </View>
     )
 }
