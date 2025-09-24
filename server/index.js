@@ -16,7 +16,7 @@ const client = new OpenAI({
 // Route to receive test data
 app.post('/upload', async (req, res) => {
   try {
-    const prova = req.body // The student's test text
+    const prova = req.body.tests // The student's test text
 
     if (!prova) {
       return res.status(400).json({ error: 'No test data provided' })
@@ -75,18 +75,20 @@ Antes de retornar, verifique:
 ## FORMATO DE RESPOSTA OBRIGATÓRIO:
 Retorne APENAS um JSON válido:
 {
-  "total_questions": <número exato de questões>,
-  "total_possible_points": <soma de todos os pesos>,
-  "earned_points": <soma dos pesos das questões corretas>,
-  "final_score": <nota de 0 a 10 com 1 casa decimal>,
-  "questions": [
+  "total_questoes": <número total de questões da prova>,
+  "total_acertos": <quantidade de questões corretas>,
+  "total_erros": <quantidade de questões erradas>,
+  "questoes": [
     {
-      "number": 1,
-      "weight": <peso extraído>,
-      "correct": <true ou false>,
-      "feedback": "<vazio se correct=true, explicação específica se false>"
-    }
-  ]
+      "questao": <número da questão>,
+      "correta": <true ou false, se o aluno acertou ou errou>,
+      "pergunta": "<enunciado da questão>",
+      "resposta": "<resposta dada pelo aluno>",
+      "feedback": "<explicação do erro, se a resposta estiver errada; vazio se correta>"
+    },
+     . . . 
+    ]
+"media_perguntas": <soma do total de acertos (dividido) pelo total de perguntas>,
 }
 
 IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser marcadas como corretas, mesmo que simples.
