@@ -1,13 +1,14 @@
 import React, { useState } from "react"
-import { View, ScrollView, Image, Text, PermissionsAndroid, Platform, Alert } from "react-native"
+import { View, ScrollView, Image, Text, PermissionsAndroid, Platform, Alert, Dimensions } from "react-native"
 import MLKitOCR from "react-native-mlkit-ocr"
 import axios from "axios"
-import styles from "../styles/MainStyle";
+import styles from "../styles/MainStyle"
 import ImagePickerModal from "../components/CatchPhotos/index"
 
 export default function Main() {
   const [images, setImages] = useState([])
 
+  // Solicita permissão para usar câmera (Android)
   const requestCameraPermission = async () => {
     if (Platform.OS === "android") {
       try {
@@ -30,9 +31,8 @@ export default function Main() {
     return true
   }
 
+  // Processa imagens e salva {uri, texto}
   const processImages = async (uris) => {
-    const results = []
-
     for (let uri of uris) {
       try {
         const visionResp = await MLKitOCR.detectFromFile(uri)
@@ -40,19 +40,19 @@ export default function Main() {
           visionResp.length > 0
             ? visionResp.map((b) => b.text).join(" ")
             : "Nenhum texto encontrado"
-        results.push({ uri, text })
+
+        setImages((prev) => [...prev, { uri, text }])
+
+        // Envia para servidor
+        await sendAllToServer([text])
       } catch (err) {
         console.log("Erro OCR:", err)
-        results.push({ uri, text: "Erro ao processar imagem" })
+        setImages((prev) => [...prev, { uri, text: "Erro ao processar imagem" }])
       }
     }
-
-    setImages((prev) => [...prev, ...results])
-
-    const allTexts = results.map((r) => r.text)
-    sendAllToServer(allTexts)
   }
 
+  // Envia os textos para o servidor
   const sendAllToServer = async (texts) => {
     if (texts.length === 0) return
     try {
@@ -67,11 +67,16 @@ export default function Main() {
 
   return (
     <View style={styles.container}>
+      {/* Botão de captura (com modal) */}
+      <View style={styles.logoContainer}>
+        <Image source={require('../../assets/top-logo.png')} style={styles.topLogo}/>
+      </View>
       <ImagePickerModal
         requestCameraPermission={requestCameraPermission}
         processImages={processImages}
       />
 
+      {/* Lista de imagens + textos */}
       <ScrollView style={styles.scroll}>
         {images.map((item, index) => (
           <View key={index} style={styles.imageContainer}>
