@@ -11,9 +11,69 @@ import {
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import styles from './indexStyles';
 
-export default function ImagePickerModal({ requestCameraPermission, processImages }) {
+export default function ImagePickerModal() {
+    const [images, setImages] = useState([])
+
+  // Solicita permissão para usar câmera (Android)
+  const requestCameraPermission = async () => {
+    if (Platform.OS === "android") {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: "Permissão para usar a câmera",
+            message: "O app precisa de acesso à sua câmera",
+            buttonNeutral: "Perguntar depois",
+            buttonNegative: "Cancelar",
+            buttonPositive: "OK",
+          }
+        )
+        return granted === PermissionsAndroid.RESULTS.GRANTED
+      } catch (err) {
+        console.warn(err)
+        return false
+      }
+    }
+    return true
+  }
+
+  // Processa imagens e salva {uri, texto}
+  const processImages = async function (uris){
+    for (let uri of uris) {
+      try {
+        const visionResp = await MLKitOCR.detectFromFile(uri)
+        const text =
+          visionResp.length > 0
+            ? visionResp.map((b) => b.text).join(" ")
+            : "Nenhum texto encontrado"
+
+        setImages((prev) => [...prev, { uri, text }])
+
+        // Envia para servidor
+        await sendAllToServer([text])
+      } catch (err) {
+        console.log("Erro OCR:", err)
+        setImages((prev) => [...prev, { uri, text: "Erro ao processar imagem" }])
+      }
+    }
+  }
+
+  // Envia os textos para o servidor
+  const sendAllToServer = async (texts) => {
+    if (texts.length === 0) return
+    try {
+      const response = await axios.post("http://192.168.15.46:3000/upload", { tests: texts })
+      console.log("Resposta do servidor:", response.data)
+      Alert.alert("Sucesso", JSON.stringify(response.data))
+    } catch (error) {
+      console.log("Erro ao enviar para o servidor:", error)
+      Alert.alert("Erro", "Erro ao conectar com o servidor")
+    }
+  }
+
+    //!       parte do modal
+    
     const [modalVisible, setModalVisible] = useState(false)
-    const [selectedImage, setSelectedImage] = useState(null)
 
     const handleOpenCamera = async () => {
         setModalVisible(false)
@@ -65,12 +125,12 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
                 <ScrollView style={styles.containerPhoto} horizontal={true}>
                     <View style={styles.carousel}>
 
-                        {selectedImage && (
-                                <Image
-                                    source={{ uri: selectedImage }}
-                                    style={styles.photos }
-                                />
-                        )}
+                        {images.map((item, index) => (
+                                  <View key={index}>
+                                    <Image source={{ uri: item.uri }} style={styles.photos} />
+                                    {/* <Text style={styles.text}>{item.text}</Text> */}
+                                  </View>
+                                ))}
                         <Image
                             style={styles.photos}
                         />
@@ -89,7 +149,7 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
 
                         <TouchableOpacity 
                         style={styles.sendButton}
-                        onPress={() =>alert('sendAllToServer')}
+                        onPress={() =>processImages()}
                         >
                             <Image source={require('../../../assets/send.png')}/>
                         </TouchableOpacity>
