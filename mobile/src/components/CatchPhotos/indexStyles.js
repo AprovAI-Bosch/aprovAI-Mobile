@@ -2,25 +2,62 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     iconCamera: {
-        width: 50,
-        height: 50,
+        width: 30,
+        height: 30,
+    },
+   containerGroup:{
+    display:'flex',
+    maxWidth:500,
+    marginTop: 300,
+   },
+    containerPhoto:{
+        backgroundColor: "#E5DDE9",
+        paddingVertical: 10,
+        borderRadius: 10,
+    },
+    carousel:{
+        flexDirection:'row',
+        marginTop:10,
+        marginBottom:10
+    },
+    photos:{
+        width:150,
+        height:300,
+        marginLeft:10,
+        resizeMode:'stretch',
+        aspectRatio:1,
+        borderRadius:10,
+
+    },
+    containerButton:{
+        flexDirection:'row'
+    },
+    mainButton: {
+        backgroundColor: "#E5DDE9",
+        marginTop:10,
+        width:250,
+        height:80,
+        borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 30,
-    },
-
-    mainButton: {
-        backgroundColor: "#EDEDEE",
-        paddingVertical: 50,
-        paddingHorizontal: 70,
-        borderRadius: 10,
-        alignSelf: "center",
-        marginTop: 300,
+        alignSelf: "flex-start",
+        
     },
     mainButtonText: {
         color: "#000000ff",
         fontSize: 16,
         fontWeight: "bold",
+    },
+    sendButton:{
+        backgroundColor:'#FC4141',
+        width:130,
+        height:80,
+        marginLeft:10,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: "flex-end",
+
     },
     modalOverlay: {
         flex: 1,

@@ -6,6 +6,7 @@ import {
     Modal,
     Alert,
     Image,
+    ScrollView
 } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import styles from './indexStyles';
@@ -50,13 +51,54 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
 
     return (
         <View>
-            <TouchableOpacity
-                style={styles.mainButton}
-                onPress={() => setModalVisible(true)}
-            >
-                <Image source={require('../../../assets/icon-camera.png')} style={styles.iconCamera}/>
-                <Text style={styles.mainButtonText}>Upload da Prova</Text>
-            </TouchableOpacity>
+
+                {/* <TouchableOpacity
+                    style={styles.mainButton}
+                    onPress={() => setModalVisible(true)}
+                    >
+                    <Image source={require('../../../assets/icon-camera.png')} style={styles.iconCamera}/>
+                    <Text style={styles.mainButtonText}>Upload da Prova</Text>
+                </TouchableOpacity> */}
+
+            <View style={styles.containerGroup}>
+
+                <ScrollView style={styles.containerPhoto} horizontal={true}>
+                    <View style={styles.carousel}>
+
+                        {selectedImage && (
+                                <Image
+                                    source={{ uri: selectedImage }}
+                                    style={styles.photos }
+                                />
+                        )}
+                        <Image
+                            style={styles.photos}
+                        />
+                    </View>
+                        
+                </ScrollView>
+                <View style={styles.containerButton}>
+
+                        <TouchableOpacity
+                            style={styles.mainButton}
+                            onPress={() => setModalVisible(true)}
+                            >
+                            <Image source={require('../../../assets/icon-camera.png')} style={styles.iconCamera}/>
+                            
+                        </TouchableOpacity>
+
+                        <TouchableOpacity 
+                        style={styles.sendButton}
+                        onPress={() =>alert('sendAllToServer')}
+                        >
+                            <Image source={require('../../../assets/send.png')}/>
+                        </TouchableOpacity>
+                        </View>
+                        </View>
+                
+            
+
+           
 
             <Modal
                 animationType="slide"
@@ -95,12 +137,14 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
                     </View>
                 </View>
             </Modal>
-              {selectedImage && (
+              {/* {selectedImage && (
                 <Image
                     source={{ uri: selectedImage }}
                     style={{ width: 200, height: 200, marginTop: 20 }}
                 />
-  )}
+  )} */}
+
+          
         </View>
     )
 }

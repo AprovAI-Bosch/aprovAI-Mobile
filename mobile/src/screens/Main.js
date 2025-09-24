@@ -71,6 +71,8 @@ export default function Main() {
       <View style={styles.logoContainer}>
         <Image source={require('../../assets/top-logo.png')} style={styles.topLogo}/>
       </View>
+      
+      {/* ImagePicker relacionado ao index.js do CatchPhotos */}
       <ImagePickerModal
         requestCameraPermission={requestCameraPermission}
         processImages={processImages}
