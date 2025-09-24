@@ -1,5 +1,5 @@
 import { View, Image } from "react-native"
-import styles from "../styles/MainStyle"
+import styles from "./HeaderStyles"
 
 export default function Header(){
     <View style={styles.logoContainer}>
