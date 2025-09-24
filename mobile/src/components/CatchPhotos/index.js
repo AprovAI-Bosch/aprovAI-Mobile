@@ -53,8 +53,8 @@ export default function ImagePickerModal() {
 
         setImages((prev) => [...prev, { uri, text }])
 
-        // Envia para servidor
-        await sendAllToServer([text])
+        //? Envia para servidor
+        //! await sendAllToServer([text])
       } catch (err) {
         console.log("Erro OCR:", err)
         setImages((prev) => [...prev, { uri, text: "Erro ao processar imagem" }])
@@ -75,6 +75,13 @@ export default function ImagePickerModal() {
     }
   }
 
+    const Send = () => {
+    if (images.length === 0) {
+      Alert.alert("Nenhuma imagem selecionada", "Selecione pelo menos uma imagem antes de enviar.");
+      return;
+    }
+    sendAllToServer(images.map(img => img.text));
+  };
     //!       parte do modal
     
     const [modalVisible, setModalVisible] = useState(false)
@@ -151,7 +158,7 @@ export default function ImagePickerModal() {
 
                         <TouchableOpacity 
                         style={styles.sendButton}
-                        onPress={() => processImages(images.map(img => img.uri))}
+                            onPress={() => Send}
                         >
                             <Image source={require('../../../assets/send.png')}/>
                         </TouchableOpacity>
