@@ -1,12 +1,13 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import {
     View,
     Text,
     TouchableOpacity,
     Modal,
     Alert,
-} from "react-native"
-import { launchCamera, launchImageLibrary } from "react-native-image-picker"
+    Image,
+} from "react-native";
+import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import styles from './indexStyles';
 
 export default function ImagePickerModal({ requestCameraPermission, processImages }) {
@@ -50,7 +51,8 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
                 style={styles.mainButton}
                 onPress={() => setModalVisible(true)}
             >
-                <Text style={styles.mainButtonText}>Adicionar Imagem</Text>
+                <Image source={require('../../../assets/icon-camera.png')} style={styles.iconCamera}/>
+                <Text style={styles.mainButtonText}>Upload da Prova</Text>
             </TouchableOpacity>
 
             <Modal
@@ -69,7 +71,7 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
                                 onPress={handleOpenCamera}
                             >
 
-                                <Text style={styles.buttonText}>Câmera</Text>
+                                <Text style={styles.buttonText}>Abrir Câmera</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity
@@ -77,7 +79,7 @@ export default function ImagePickerModal({ requestCameraPermission, processImage
                                 onPress={handleOpenGallery}
                             >
 
-                                <Text style={styles.buttonText}>Galeria</Text>
+                                <Text style={styles.buttonText}>Abrir Galeria</Text>
                             </TouchableOpacity>
                         </View>
 
