@@ -1,7 +1,7 @@
 import { View, } from "react-native"
-import styles from "../styles/MainStyle"
 import ImagePickerModal from "../components/CatchPhotos/index"
-import Header from "./Header"
+import Header from "../components/Header/Header"
+import styles from '../styles/MainStyles';
 export default function Main() {
 
   return (

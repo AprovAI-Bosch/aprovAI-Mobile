@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {useNavigation} from '@react-navigation/native'
 import {
   View,
   Text,
@@ -17,6 +18,8 @@ import MLKitOCR from 'react-native-mlkit-ocr'
 import axios from 'axios'
 
 export default function ImagePickerModal() {
+  const navigation = useNavigation();
+
   const [images, setImages] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -72,8 +75,10 @@ export default function ImagePickerModal() {
       setLoading(true)
       const response = await axios.post('http://192.168.15.46:3000/upload', {
         tests: texts,
-      })
+      });
       console.log('Resposta do servidor:', response.data)
+
+      navigation.navigate('Result', {result: response.data});
       Alert.alert('Sucesso', JSON.stringify(response.data))
     } catch (error) {
       console.log('Erro ao enviar para o servidor:', error)
