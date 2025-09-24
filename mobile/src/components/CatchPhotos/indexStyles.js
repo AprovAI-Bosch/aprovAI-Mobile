@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-
+import { StyleSheet, Dimensions } from "react-native";
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     iconCamera: {
         width: 30,
@@ -7,13 +8,14 @@ const styles = StyleSheet.create({
     },
    containerGroup:{
     display:'flex',
-    maxWidth:500,
-    marginTop: 300,
+    maxWidth:windowWidth,
+    marginTop: windowHeight*0.25,
    },
     containerPhoto:{
         backgroundColor: "#E5DDE9",
         paddingVertical: 10,
         borderRadius: 10,
+        minHeight:windowWidth*0.51,
     },
     carousel:{
         flexDirection:'row',
@@ -21,22 +23,21 @@ const styles = StyleSheet.create({
         marginBottom:10
     },
     photos:{
-        width:150,
-        height:300,
-        marginLeft:10,
+        width:windowWidth*0.41,
+        marginLeft:windowWidth*0.02,
+        marginRight: windowWidth*0.03,
         resizeMode:'stretch',
         aspectRatio:1,
         borderRadius:10,
-
     },
     containerButton:{
         flexDirection:'row'
     },
     mainButton: {
         backgroundColor: "#E5DDE9",
-        marginTop:10,
-        width:250,
-        height:80,
+        marginTop:windowHeight*0.02,
+        width:windowWidth*0.61,
+        height:windowHeight*0.1,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
@@ -50,9 +51,9 @@ const styles = StyleSheet.create({
     },
     sendButton:{
         backgroundColor:'#FC4141',
-        width:130,
-        height:80,
-        marginLeft:10,
+        width:windowWidth*0.32,
+        height:windowHeight*0.1,
+        marginLeft:windowWidth*0.03,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',

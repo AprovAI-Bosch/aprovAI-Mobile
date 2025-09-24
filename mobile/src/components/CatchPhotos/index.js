@@ -132,18 +132,21 @@ export default function ImagePickerModal() {
             <View style={styles.containerGroup}>
 
                 <ScrollView style={styles.containerPhoto} horizontal={true}>
-                    <View style={styles.carousel}>
+                    
 
                         {images.map((item, index) => (
-                                  <View key={index}>
+                                  <View key={index} style={styles.carousel}>
                                     <Image source={{ uri: item.uri }} style={styles.photos} />
-                                    {/* <Text style={styles.text}>{item.text}</Text> */}
+                                    <Text style={styles.buttonText}>{item.text}</Text>
                                   </View>
                                 ))}
-                        <Image
-                            style={styles.photos}
-                        />
-                    </View>
+                      {/* <View style={styles.carousel}>
+                                <Image source={require('../../../assets/prova_ex.png')} style={styles.photos} />
+                                <Image source={require('../../../assets/prova_ex.png')} style={styles.photos} />
+                                <Image source={require('../../../assets/prova_ex.png')} style={styles.photos} />
+                                <Image source={require('../../../assets/prova_ex.png')} style={styles.photos} />
+                      </View> */}
+                    
                         
                 </ScrollView>
                 <View style={styles.containerButton}>
