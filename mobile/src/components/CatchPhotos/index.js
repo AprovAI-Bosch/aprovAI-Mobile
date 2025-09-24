@@ -10,6 +10,10 @@ import {
 } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import styles from './indexStyles';
+import MLKitOCR from "react-native-mlkit-ocr"
+import axios from "axios"
+import { Platform, PermissionsAndroid } from 'react-native'
+
 
 export default function ImagePickerModal() {
     const [images, setImages] = useState([])
@@ -88,7 +92,6 @@ export default function ImagePickerModal() {
             async (response) => {
                 if (!response.didCancel && !response.errorCode) {
                     const uris = response.assets.map((a) => a.uri)
-                    setSelectedImage(uris[0])
                     await processImages(uris)
                 }
             }
@@ -102,7 +105,6 @@ export default function ImagePickerModal() {
             async (response) => {
                 if (!response.didCancel && !response.errorCode) {
                     const uris = response.assets.map((a) => a.uri)
-                    setSelectedImage(uris[0])
                     await processImages(uris)
                 }
             }
@@ -149,7 +151,7 @@ export default function ImagePickerModal() {
 
                         <TouchableOpacity 
                         style={styles.sendButton}
-                        onPress={() =>processImages()}
+                        onPress={() => processImages(images.map(img => img.uri))}
                         >
                             <Image source={require('../../../assets/send.png')}/>
                         </TouchableOpacity>
