@@ -10,9 +10,8 @@ const styles = StyleSheet.create({
     },
 
     containerGroup: {
-        flex: 1,
+        marginTop: height*0.55,
         justifyContent: 'flex-start',
-        marginTop: 10,
     },
 
     containerPhoto: {

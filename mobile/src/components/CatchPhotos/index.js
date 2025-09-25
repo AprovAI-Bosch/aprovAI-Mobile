@@ -136,7 +136,7 @@ export default function ImagePickerModal() {
 
   return (
     <View style={styles.container}>
-      <Header/>
+     
       <View style={styles.containerGroup}>
         <ScrollView style={styles.containerPhoto} horizontal={true}>
           {images.map((item, index) => (
