@@ -19,6 +19,16 @@ const styles = StyleSheet.create({
         height: 100,
         resizeMode: 'contain',
     },
+    imageContainer:{
+        justifyContent:'center',
+        alignItems:'flex-end'
+    },
+    image:{
+        zIndex:1,
+        resizeMode:'contain',
+        position:'absolute',
+        marginTop:height*0.7
+    }
 });
 
 export default styles;

@@ -7,7 +7,13 @@ export default function Main() {
   return (
     <View style={styles.container}>
       <Header />
-      
+      <View style={styles.imageContainer}>
+
+      <Image
+        source={require('../images/Personagem.png')}
+        style={styles.image}
+        />
+        </View>
       {/* ImagePicker relacionado ao index.js do CatchPhotos */}
       <ImagePickerModal
         // requestCameraPermission={requestCameraPermission}
