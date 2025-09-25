@@ -16,6 +16,7 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import styles from './indexStyles'
 import MLKitOCR from 'react-native-mlkit-ocr'
 import axios from 'axios'
+import Header from '../Header/Header';
 
 export default function ImagePickerModal() {
   const navigation = useNavigation();
@@ -135,6 +136,7 @@ export default function ImagePickerModal() {
 
   return (
     <View style={styles.container}>
+      <Header/>
       <View style={styles.containerGroup}>
         <ScrollView style={styles.containerPhoto} horizontal={true}>
           {images.map((item, index) => (
@@ -148,7 +150,7 @@ export default function ImagePickerModal() {
         <View style={styles.containerButton}>
           <TouchableOpacity
             style={styles.mainButton}
-            onPress={() => setModalVisible(true)}
+            onPress={() => handleOpenCamera()}
           >
             <Image
               source={require('../../../assets/icon-camera.png')}
@@ -157,10 +159,13 @@ export default function ImagePickerModal() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.GalleryButton}
-            onPress={() => handleOpenCamera()}
+            style={styles.galleryButton}
+            onPress={() => handleOpenGallery()}
           >
-            
+            <Image 
+            source={require('../../../assets/icon-gallery.png')}
+            style={styles.iconCamera}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.sendButton} onPress={Send}>
