@@ -2,58 +2,67 @@ import { StyleSheet, Dimensions } from "react-native";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
+    // container: {
+    //     alignItems: 'center', 
+    //     justifyContent: 'center'
+    // },
+
     iconCamera: {
         width: 30,
         height: 30,
     },
-   containerGroup:{
-    display:'flex',
-    maxWidth:windowWidth,
-    marginTop: windowHeight*0.25,
-   },
-    containerPhoto:{
+    containerGroup: {
+        display: 'flex',
+        maxWidth: windowWidth * 0.9,
+        marginTop: windowHeight * 0.25,
+        flexDirection: 'column',
+    },
+    containerPhoto: {
         backgroundColor: "#E5DDE9",
-        paddingVertical: 10,
         borderRadius: 10,
-        minHeight:windowWidth*0.51,
+        height: windowHeight * 0.2,
+        marginLeft: 20,
+        marginRight: -15,
+
     },
-    carousel:{
-        flexDirection:'row',
-        marginTop:10,
-        marginBottom:10
+    carousel: {
+        flexDirection: 'row',
+        marginTop: 10,
+        marginBottom: 10
     },
-    photos:{
-        width:windowWidth*0.41,
-        marginLeft:windowWidth*0.02,
-        marginRight: windowWidth*0.03,
-        resizeMode:'stretch',
-        aspectRatio:1,
-        borderRadius:10,
+    photos: {
+        width: windowWidth * 0.41,
+        marginLeft: windowWidth * 0.02,
+        marginRight: windowWidth * 0.03,
+        resizeMode: 'stretch',
+        aspectRatio: 1,
+        borderRadius: 10,
     },
-    containerButton:{
-        flexDirection:'row'
+    containerButton: {
+        flexDirection: 'row'
     },
     mainButton: {
         backgroundColor: "#E5DDE9",
-        marginTop:windowHeight*0.02,
-        width:windowWidth*0.61,
-        height:windowHeight*0.1,
+        marginTop: windowHeight * 0.02,
+        marginLeft: windowWidth * 0.05,
+        width: windowWidth * 0.51,
+        height: windowHeight * 0.1,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: "flex-start",
-        
+
     },
     mainButtonText: {
         color: "#000000ff",
         fontSize: 16,
         fontWeight: "bold",
     },
-    sendButton:{
-        backgroundColor:'#FC4141',
-        width:windowWidth*0.32,
-        height:windowHeight*0.1,
-        marginLeft:windowWidth*0.03,
+    sendButton: {
+        backgroundColor: '#FC4141',
+        width: windowWidth * 0.32,
+        height: windowHeight * 0.1,
+        marginLeft: windowWidth * 0.03,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',

@@ -134,7 +134,7 @@ export default function ImagePickerModal() {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.containerGroup}>
         <ScrollView style={styles.containerPhoto} horizontal={true}>
           {images.map((item, index) => (
@@ -154,6 +154,13 @@ export default function ImagePickerModal() {
               source={require('../../../assets/icon-camera.png')}
               style={styles.iconCamera}
             />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.GalleryButton}
+            onPress={() => handleOpenCamera()}
+          >
+            
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.sendButton} onPress={Send}>
