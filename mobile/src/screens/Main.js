@@ -1,4 +1,4 @@
-import { View, } from "react-native"
+import { View,Image } from "react-native"
 import ImagePickerModal from "../components/CatchPhotos/index"
 import Header from "../components/Header/Header"
 import styles from '../styles/MainStyles';

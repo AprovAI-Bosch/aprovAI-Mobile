@@ -1,31 +1,30 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import Header from "../components/Header/Header";
 import styles from '../styles/ResultStyles';
 
-export default function Result({ route }) {
+export default function Result({ route, navigation }) {
 
     const { result } = route.params;
 
     return (
         <View style={styles.container}>
-            <Header />
+
             <View style={styles.numberQuestions}>
-                <Text style={styles.text}>N° Questões</Text>
-                <Text style={styles.text}>{result.total_questoes}</Text>
+                <Text style={styles.textQuestions}>N° Questões</Text>
+                <Text style={styles.textQuestions}>{result.total_questoes}</Text>
             </View>
             <View style={styles.rowRightWrong}>
                 <View style={styles.blockRight}>
-                    <Text style={{ fontSize: 30 }}>{result.questoes.filter(q => q.correta).length}</Text>
-                    <Text style={{ fontSize: 10 }}>acertos</Text>
+                    <Text style={{ fontSize: 50, marginLeft: 10, marginBottom: 10, }}>{result.questoes.filter(q => q.correta).length}</Text>
+                    <Text style={{ fontSize: 15, marginLeft: 10 }}>acertos</Text>
                 </View>
                 <View style={styles.blockWrong}>
-                    <Text style={{ fontSize: 30 }}>{result.questoes.filter(q => !q.correta).length}</Text>
-                    <Text style={{ fontSize: 10 }}>erros</Text>
+                    <Text style={{ fontSize: 50, marginLeft: 10, marginBottom: 10 }}>{result.questoes.filter(q => !q.correta).length}</Text>
+                    <Text style={{ fontSize: 15, marginLeft: 10 }}>erros</Text>
                 </View>
             </View>
             <View style={styles.average}>
-                <Text style={styles.text}>Média</Text>
-                <Text>{result.media_perguntas}</Text>
+                <Text style={{ color: '#ffffff', marginLeft: 14, fontWeight: 'bold' }}>Média</Text>
+                <Text style={{ color: '#ffffff', marginRight: 14, fontWeight: 'bold' }}>{result.media_perguntas}</Text>
             </View>
             <ScrollView style={styles.containerQuestions}>
                 {result.questoes.map((q, index) => (
@@ -40,9 +39,11 @@ export default function Result({ route }) {
                     </View>
                 ))}
             </ScrollView>
-            <TouchableOpacity style={styles.seenButton}>
-                <Text style={styles.seenText}> Visto </Text>
-            </TouchableOpacity>
+            <View style={styles.btnConclusion}>
+                <TouchableOpacity style={styles.seenButton} onPress={navigation.navigate('Main')}>
+                    <Text style={styles.seenText}> Visto </Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 

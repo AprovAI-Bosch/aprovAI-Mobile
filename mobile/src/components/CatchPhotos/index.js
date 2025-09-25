@@ -80,7 +80,7 @@ export default function ImagePickerModal() {
       console.log('Resposta do servidor:', response.data)
 
       navigation.navigate('Result', {result: response.data});
-      Alert.alert('Sucesso', JSON.stringify(response.data))
+      // Alert.alert('Sucesso', JSON.stringify(response.data))
     } catch (error) {
       console.log('Erro ao enviar para o servidor:', error)
       Alert.alert('Erro', 'Erro ao conectar com o servidor')
@@ -142,7 +142,7 @@ export default function ImagePickerModal() {
           {images.map((item, index) => (
             <View key={index} style={styles.carousel}>
               <Image source={{ uri: item.uri }} style={styles.photos} />
-              <Text style={styles.buttonText}>{item.text}</Text>
+              {/* <Text style={styles.buttonText}>{item.text}</Text> */}
             </View>
           ))}
         </ScrollView>

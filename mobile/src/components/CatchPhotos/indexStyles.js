@@ -10,14 +10,14 @@ const styles = StyleSheet.create({
     },
 
     containerGroup: {
-        marginTop: height*0.55,
+        marginTop: height*0.45,
         justifyContent: 'flex-start',
     },
 
     containerPhoto: {
         backgroundColor: "#E5DDE9",
         borderRadius: 10,
-        height: height * 0.1,
+        height: height * 0.2,
         marginVertical: 10,
     },
 
