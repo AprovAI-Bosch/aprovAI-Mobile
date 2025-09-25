@@ -1,9 +1,9 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import styles from '../styles/ResultStyles';
 
-export default function Result({ route, navigation }) {
+export default function Result({ result, navigation }) {
 
-    const { result } = route.params;
+    const { result } = result.params;
 
     return (
         <View style={styles.container}>
@@ -40,7 +40,7 @@ export default function Result({ route, navigation }) {
                 ))}
             </ScrollView>
             <View style={styles.btnConclusion}>
-                <TouchableOpacity style={styles.seenButton} onPress={navigation.navigate('Main')}>
+                <TouchableOpacity style={styles.seenButton} onPress={() => navigation.navigate('Main')}>
                     <Text style={styles.seenText}> Visto </Text>
                 </TouchableOpacity>
             </View>
