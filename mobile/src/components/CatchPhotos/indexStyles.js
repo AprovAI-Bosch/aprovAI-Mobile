@@ -5,20 +5,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#F6EEFA",
-        paddingHorizontal: 16,
         justifyContent: 'flex-start',
     },
 
     containerGroup: {
-        flex: 1,
         justifyContent: 'flex-start',
-        marginTop: 10,
+        marginTop:height*0.5,
+        zIndex:2,
     },
 
     containerPhoto: {
         backgroundColor: "#E5DDE9",
         borderRadius: 10,
-        height: height * 0.1,
+        height: height * 0.15,
         marginVertical: 10,
     },
 
@@ -38,13 +37,13 @@ const styles = StyleSheet.create({
     containerButton: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginVertical: 10,
+        marginVertical: 2,
     },
 
     mainButton: {
         backgroundColor: "#E5DDE9",
-        width: width * 0.27,
-        height: height * 0.07,
+        width: width * 0.3,
+        height: height * 0.08,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
@@ -52,9 +51,10 @@ const styles = StyleSheet.create({
 
     galleryButton: {
         backgroundColor: "#E5DDE9",
-        width: width * 0.27,
-        height: height * 0.07,
+        width: width * 0.3,
+        height: height * 0.08,
         borderRadius: 20,
+        marginLeft:width*0.02,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     sendButton: {
         backgroundColor: '#FC4141',
         width: width * 0.3,
-        height: height * 0.07,
+        height: height * 0.08,
+        marginLeft:width*0.02,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',

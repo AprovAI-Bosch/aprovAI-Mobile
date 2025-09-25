@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     justifyContent:'center',
     alignItems: 'center',
-    marginTop: screenHeight*0.01
+    marginTop: screenHeight*0.02
     
   },
 
