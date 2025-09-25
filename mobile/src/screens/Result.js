@@ -1,9 +1,9 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import styles from '../styles/ResultStyles';
 
-export default function Result({ result, navigation }) {
+export default function Result({ dados, navigation }) {
 
-    const { result } = result.params;
+    const { result } = dados.params;
 
     return (
         <View style={styles.container}>

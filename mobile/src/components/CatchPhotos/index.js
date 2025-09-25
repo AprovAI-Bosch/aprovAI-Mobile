@@ -79,7 +79,7 @@ export default function ImagePickerModal() {
       });
       console.log('Resposta do servidor:', response.data)
 
-      navigation.navigate('Result', {result: response.data});
+      navigation.navigate('Result', {dados: response.data});
       // Alert.alert('Sucesso', JSON.stringify(response.data))
     } catch (error) {
       console.log('Erro ao enviar para o servidor:', error)
