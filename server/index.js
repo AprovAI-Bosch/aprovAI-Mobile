@@ -23,41 +23,40 @@ app.post('/upload', async (req, res) => {
     }
 
     // Prompt for GPT
-    const prompt = `
-Você é um professor experiente corrigindo uma prova de estudante em português brasileiro.
+    const prompt = `Você é um professor experiente corrigindo uma prova de estudante em português brasileiro.
 
 ## DADOS DA PROVA:
 ${prova}
 
 ## INSTRUÇÕES FUNDAMENTAIS:
-1. Avalie APENAS as questões enviadas - NÃO invente questões
-2. EXTRAIA O PESO de cada questão do formato "Questão X (Y)" onde Y é o peso
-3. Seja PRECISO e CONSISTENTE em suas avaliações
+1. Avalie APENAS as respostas enviadas pelo aluno – NÃO avalie nem critique as perguntas.
+2. EXTRAIA O PESO de cada questão do formato "Questão X (Y)" onde Y é o peso.
+3. Seja PRECISO e CONSISTENTE em suas avaliações.
 
 ## CRITÉRIOS DE AVALIAÇÃO DETALHADOS:
 
 ### Para considerar CORRETA (correct: true):
-- A resposta demonstra compreensão do conceito principal
-- Atende ao que foi solicitado na questão
-- Contém informações factualmente corretas
-- É coerente e faz sentido no contexto
-- NÃO precisa ser perfeita ou exaustiva
+- A resposta do aluno demonstra compreensão do conceito principal.
+- Atende ao que foi solicitado na questão.
+- Contém informações factualmente corretas.
+- É coerente e faz sentido no contexto.
+- NÃO precisa ser perfeita, exaustiva ou bem formulada.
 
 ### Para considerar INCORRETA (correct: false):
-- Contém erros conceituais graves ou factuais
-- Não atende ao solicitado na questão
-- Demonstra clara falta de compreensão
-- Resposta completamente fora de contexto
+- Contém erros conceituais graves ou factuais.
+- Não atende ao solicitado na questão.
+- Demonstra clara falta de compreensão.
+- Resposta completamente fora de contexto.
 
 ## REGRAS DE FEEDBACK:
-- Se correct=true: feedback deve ser "" (string vazia)
-- Se correct=false: feedback DEVE explicar especificamente o erro e como melhorar
+- Se correct=true: feedback deve ser "" (string vazia), independentemente de estilo, ortografia ou forma de escrever da resposta.
+- Se correct=false: feedback DEVE explicar especificamente o erro conceitual ou factual na resposta do aluno, sem comentar sobre a pergunta.
 
 ## CÁLCULO DA NOTA (CRÍTICO):
-1. Some os pesos de TODAS as questões para obter o total_possivel
-2. Some os pesos apenas das questões CORRETAS para obter pontos_obtidos
+1. Some os pesos de TODAS as questões para obter o total_possivel.
+2. Some os pesos apenas das questões CORRETAS para obter pontos_obtidos.
 3. Calcule: final_score = (pontos_obtidos / total_possivel) * 10
-4. Arredonde para 1 casa decimal
+4. Arredonde para 1 casa decimal.
 
 ## EXEMPLO DE CÁLCULO:
 Se temos 3 questões com pesos 3, 2, 5:
@@ -86,12 +85,12 @@ Retorne APENAS um JSON válido:
       "resposta": "<resposta dada pelo aluno>",
       "feedback": "<explicação do erro, se a resposta estiver errada; vazio se correta>"
     },
-     . . . 
-    ]
-"media_perguntas": <soma do total de acertos (dividido) pelo total de perguntas>,
+    ...
+  ],
+  "media_perguntas": <soma do total de acertos dividido pelo total de perguntas>
 }
 
-IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser marcadas como corretas, mesmo que simples.
+IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser marcadas como corretas, mesmo que simples. Não avalie nem critique a pergunta em si.
 `
     // Call to OpenAI API
     const response = await client.chat.completions.create({
