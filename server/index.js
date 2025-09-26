@@ -31,7 +31,7 @@ ${prova}
 
 ## INSTRUÇÕES FUNDAMENTAIS:
 1. Avalie APENAS as questões enviadas - NÃO invente questões
-2. EXTRAIA O PESO de cada questão do formato "Questão X (Y)" onde Y é o peso
+2. (se informado) EXTRAIA O PESO de cada questão do formato "Questão X (Y)" onde Y é o peso 
 3. Seja PRECISO e CONSISTENTE em suas avaliações
 
 ## CRITÉRIOS DE AVALIAÇÃO DETALHADOS:
@@ -88,7 +88,7 @@ Retorne APENAS um JSON válido:
     },
      . . . 
     ]
-"media_perguntas": <soma do total de acertos (dividido) pelo total de perguntas>,
+"media_perguntas": <soma do total de acertos (dividido) pelo total de questões (exemplo: 5 questões acertadas dividido por 7 questões, a média do mesmo deve ser aproximadamente 0,7), retorne um valor inteiro para a média final (ex: 1, 2, 4,5,6,7,8,9,10)>,
 }
 
 IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser marcadas como corretas, mesmo que simples.
@@ -119,5 +119,5 @@ IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`)
 })
