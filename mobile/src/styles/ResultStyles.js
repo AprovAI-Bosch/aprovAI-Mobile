@@ -1,11 +1,11 @@
 import { StyleSheet, Dimensions } from "react-native";
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        
+
     },
 
     text: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
     textQuestions: {
         color: '#000',
-        margin: 10,
+        margin: 15,
         fontWeight: 'bold',
     },
 
@@ -94,6 +94,12 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
 
+    feedback: {
+        margin: 10,
+        alignSelf: 'center',
+        textAlign: 'justify',
+    },
+
     incorrect: {
         color: 'black',
         fontSize: 18,
@@ -125,6 +131,49 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 19,
     },
+
+    modalBackground: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.7)', // fundo escuro e semi-transparente
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    modalContainer: {
+        width: '85%',
+        height: '50%',
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        padding: 25,
+        elevation: 20, // sombra Android
+        shadowColor: '#000', // sombra iOS
+        shadowOpacity: 0.4,
+        shadowOffset: { width: 0, height: 5 },
+        shadowRadius: 10,
+    },
+
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 15,
+        textAlign: 'center',
+    },
+
+    modalText: {
+        fontSize: 16,
+        marginTop: 15,
+        marginBottom: 20,
+        textAlign: 'left',
+        alignSelf: 'stretch',
+    },
+
+    iconClose: {
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        alignSelf: 'flex-end',
+    },
+
+    
 });
 
 export default styles;

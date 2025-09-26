@@ -4,7 +4,7 @@ import styles from "./HeaderStyles"
 export default function Header() {
     return (
         <View style={styles.logoContainer}>
-            <Image source={require('../../../assets/top-logo.png')} style={styles.topLogo} />
+            <Image source={require('../../images/top-logo.png')} style={styles.topLogo} />
         </View>
     )
 

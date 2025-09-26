@@ -15,8 +15,7 @@ import {
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import styles from './indexStyles'
 import MLKitOCR from 'react-native-mlkit-ocr'
-import axios from 'axios'
-import Header from '../Header/Header';
+import axios from 'axios';
 
 export default function ImagePickerModal() {
   const navigation = useNavigation();
@@ -79,7 +78,7 @@ export default function ImagePickerModal() {
       });
       console.log('Resposta do servidor:', response.data)
 
-      navigation.navigate('Result', {dados: response.data});
+      navigation.navigate('Result', {result: response.data});
       // Alert.alert('Sucesso', JSON.stringify(response.data))
     } catch (error) {
       console.log('Erro ao enviar para o servidor:', error)

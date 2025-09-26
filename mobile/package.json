@@ -28,5 +28,16 @@
     "react-native-text-recognition": "^1.0.2",
     "react-native-vision-camera": "^4.7.2"
   },
+  "codegenConfig": {
+  "name": "AprovAI",                     
+  "jsSrcsDir": "src",                    
+  "libraryName": "AprovAI",              
+  "schemaOutputDir": "build/codegen",    
+  "android": {
+    "javaPackageName": "com.aprovai.mobile",    
+    "generateCodegenModule": true       
+  }
+ },
+
   "private": true
 }

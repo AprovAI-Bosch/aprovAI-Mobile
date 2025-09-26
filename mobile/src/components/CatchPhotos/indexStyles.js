@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
     photos: {
         width: width * 0.4,
-        height: width * 0.4,
+        height: height * 0.4, 
         marginHorizontal: 5,
         borderRadius: 10,
         resizeMode: 'cover',
