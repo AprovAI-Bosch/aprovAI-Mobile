@@ -54,7 +54,7 @@ ${prova}
 
 ## CÁLCULO DA NOTA (CRÍTICO):
 1. Some os pesos de TODAS as questões para obter o total_possivel.
-2. Some os pesos apenas das questões CORRETAS para obter pontos_obtidos.
+2.  (se informado) Some os pesos apenas das questões CORRETAS para obter pontos_obtidos.
 3. Calcule: final_score = (pontos_obtidos / total_possivel) * 10
 4. Arredonde para 1 casa decimal.
 
@@ -87,7 +87,7 @@ Retorne APENAS um JSON válido:
     },
     ...
   ],
-  "media_perguntas": <soma do total de acertos dividido pelo total de perguntas>
+  "media_perguntas": <soma do total de acertos (dividido) pelo total de questões (exemplo: 5 questões acertadas dividido por 7 questões, a média do mesmo deve ser aproximadamente 0,7), retorne um valor inteiro para a média final (ex: 1, 2, 4,5,6,7,8,9,10)>
 }
 
 IMPORTANTE: Seja justo e consistente. Questões com respostas corretas devem ser marcadas como corretas, mesmo que simples. Não avalie nem critique a pergunta em si.

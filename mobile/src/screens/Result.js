@@ -21,7 +21,7 @@ export default function Result({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <Header/>
+            <Header />
 
             {/* Número de questões */}
             <View style={styles.numberQuestions}>
@@ -56,13 +56,13 @@ export default function Result({ route, navigation }) {
             {/* Lista de questões */}
             <ScrollView style={styles.containerQuestions}>
                 {result.questoes.map((q, index) => (
-                    <TouchableOpacity 
-                        key={index} 
-                        style={styles.questions} 
+                    <TouchableOpacity
+                        key={index}
+                        style={styles.questions}
                         onPress={() => openModal(q)}
                     >
                         <Text style={styles.questionTitle}>Questão {q.questao}</Text>
-                        <Image style={q.correta ? styles.correct : styles.incorrect} source={q.correta ? require('../images/correct.png'): require('../images/wrong.png')}/>
+                        <Image style={q.correta ? styles.correct : styles.incorrect} source={q.correta ? require('../images/correct.png') : require('../images/wrong.png')} />
                     </TouchableOpacity>
                 ))}
             </ScrollView>
@@ -86,14 +86,16 @@ export default function Result({ route, navigation }) {
                         {selectedQuestion && (
                             <>
                                 <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-                                    <Image source={require('../images/close.png')} style={styles.iconClose}/>
+                                    <Image source={require('../images/close.png')} style={styles.iconClose} />
                                 </TouchableOpacity>
-                            
-                                <Text style={styles.modalText}><Text style={{ fontWeight: 'bold' }}>Pergunta:</Text> {selectedQuestion.pergunta}</Text>
-                                <Text style={styles.modalText}><Text style={{ fontWeight: 'bold' }}>Resposta:</Text> {selectedQuestion.resposta}</Text>
-                                {selectedQuestion.feedback && (
-                                    <Text style={styles.modalText}><Text style={{ fontWeight: 'bold' }}>Feedback:</Text> {selectedQuestion.feedback}</Text>
-                                )}
+                                <ScrollView>
+                                    <Text style={styles.modalText}><Text style={{ fontWeight: 'bold' }}>Pergunta:</Text> {selectedQuestion.pergunta}</Text>
+                                    <Text style={styles.modalText}><Text style={{ fontWeight: 'bold' }}>Resposta:</Text> {selectedQuestion.resposta}</Text>
+                                    {selectedQuestion.feedback && (
+                                        <Text style={styles.modalText}><Text style={{ fontWeight: 'bold' }}>Feedback:</Text> {selectedQuestion.feedback}</Text>
+                                    )}
+                                </ScrollView>
+
                             </>
                         )}
                     </View>
