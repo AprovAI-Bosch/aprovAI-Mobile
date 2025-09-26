@@ -22,7 +22,7 @@ export default function Result({ route, navigation }) {
     return (
         <View style={styles.container}>
             <Header/>
--
+
             {/* Número de questões */}
             <View style={styles.numberQuestions}>
                 <Text style={styles.textQuestions}>N° Questões</Text>
@@ -62,9 +62,7 @@ export default function Result({ route, navigation }) {
                         onPress={() => openModal(q)}
                     >
                         <Text style={styles.questionTitle}>Questão {q.questao}</Text>
-                        <Text style={q.correta ? styles.correct : styles.incorrect}>
-                            {q.correta ? "✔" : "✘"}
-                        </Text>
+                        <Image style={q.correta ? styles.correct : styles.incorrect} source={q.correta ? require('../images/correct.png'): require('../images/wrong.png')}/>
                     </TouchableOpacity>
                 ))}
             </ScrollView>

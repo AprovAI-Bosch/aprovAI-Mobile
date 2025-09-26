@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginVertical: 10,
         height: height * 0.07,
-        width: width * 0.83,
+        width: width * 0.9,
         backgroundColor: '#D1CBD5',
         alignSelf: 'center',
         alignItems: 'center',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#D1CBD5',
         alignItems: 'center',
         height: height * 0.15,
-        width: width * 0.4,
+        width: width * 0.44,
         borderRadius: 15,
         alignItems: 'flex-start',
     },
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#D1CBD5',
         alignItems: 'center',
         height: height * 0.15,
-        width: width * 0.4,
+        width: width * 0.44,
         borderRadius: 15,
         alignItems: 'flex-start',
     },
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     containerQuestions: {
         // flexGrow: 1,
         borderRadius: 8,
-        marginVertical: 5,
+        marginVertical: 15,
         backgroundColor: '#E5DEE9',
     },
 
@@ -76,16 +76,17 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
-        marginVertical: 15,
+        padding: 5,
+        marginTop: 15,
         marginHorizontal: 15,
         borderRadius: 8,
         backgroundColor: '#D1CBD5',
     },
 
     questionTitle: {
-        fontSize: 16,
+        fontSize: 14,
         marginBottom: 5,
+        marginLeft: 5,
     },
 
     correct: {
