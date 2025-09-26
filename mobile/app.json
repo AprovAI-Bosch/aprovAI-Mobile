@@ -13,7 +13,10 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Precisamos da sua permissão para usar a câmera e ler fotos."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +24,10 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.aprovai.mobile"
+      "package": "com.aprovai.mobile",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -36,7 +42,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "c9140b53-0ddd-4c6d-9ef7-9e0eb2c3bbb3"
+        "projectId": "aa4df3d8-02d0-48a7-851e-38ac8ce040c3"
       }
     }
   }

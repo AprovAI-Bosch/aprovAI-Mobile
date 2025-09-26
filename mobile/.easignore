@@ -1,0 +1,32 @@
+# Ignorar node_modules (já será reconstruído na build)
+node_modules/
+
+# Ignorar caches locais e pastas de build do Expo
+.expo/
+.expo-shared/
+.expo-local/
+
+# Ignorar arquivos de git
+.git/
+.gitignore
+
+# Ignorar arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignorar pastas de build do Android/iOS que serão geradas pelo EAS
+android/build/
+ios/build/
+
+# Ignorar assets que não são usados no app
+assets/temp/
+assets/unused/
+
+# Ignorar scripts de testes ou dados de desenvolvimento
+__tests__/
+test/
+tests/
+*.spec.js
+*.test.js
