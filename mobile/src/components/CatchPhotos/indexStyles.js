@@ -23,15 +23,16 @@ const styles = StyleSheet.create({
 
     carousel: {
         flexDirection: 'row',
-        marginVertical: 10,
+        margin:10,
     },
 
     photos: {
         width: width * 0.4,
-        height: height * 0.4, 
-        marginHorizontal: 5,
+        height:'auto',
         borderRadius: 10,
         resizeMode: 'cover',
+        marginRight:10,
+
     },
 
     containerButton: {
@@ -134,4 +135,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default styles;
+export default styles;
