@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, TouchableOpacity, Modal, Image } from "react-native";
 import { useState } from "react";
+import Header from '../components/Header/Header';
 import styles from '../styles/ResultStyles';
 
 export default function Result({ route, navigation }) {
@@ -20,7 +21,8 @@ export default function Result({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-
+            <Header/>
+-
             {/* Número de questões */}
             <View style={styles.numberQuestions}>
                 <Text style={styles.textQuestions}>N° Questões</Text>
